@@ -1,0 +1,98 @@
+swagger: '2.0'
+info:
+  title: Banking Document Management System API
+  description: API for managing and searching documents within a banking environment
+  version: '1.0.0'
+host: 'dms.example.com'
+basePath: '/api'
+schemes:
+  - https
+
+paths:
+  /documents:
+    post:
+      summary: Upload a new document
+      # ... existing code ...
+
+  /documents/{id}:
+    get:
+      summary: Get a document by ID
+      # ... existing code ...
+    put:
+      summary: Update a document
+      # ... define the update operation ...
+    delete:
+      summary: Delete a document
+      # ... define the delete operation ...
+
+  /documents/searchByName:
+    get:
+      summary: Search documents by name
+      # ... existing code ...
+
+  /documents/search:
+    get:
+      summary: Search documents with various filters
+      # ... existing code ...
+
+  /documents/advancedSearch:
+    get:
+      summary: Advanced search with multiple filters
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: tag
+          schema:
+            type: string
+        - in: query
+          name: startDate
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: endDate
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: owner
+          schema:
+            type: string
+        # Add additional filters as necessary
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        DocumentID:
+          type: string
+        Title:
+          type: string
+        Description:
+          type: string
+        FilePath:
+          type: string
+        UploadDate:
+          type: string
+          format: date
+        LastModifiedDate:
+          type: string
+          format: date
+        OwnerUserID:
+          type: string
+        Version:
+          type: integer
+        # Add additional properties as necessary
